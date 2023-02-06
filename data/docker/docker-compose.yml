@@ -1,0 +1,15 @@
+version: '3.7'
+    
+services:
+    proxy-voting_db:
+        image: postgres:15.1
+        container_name: proxy-voting_db
+        restart: always
+        ports :
+            - "5490:5432"
+        environment:
+          POSTGRES_USER : "proxvot_user"
+          POSTGRES_PASSWORD : "proxvot_pwd"
+          POSTGRES_DB : "proxvot_db"
+        volumes:
+            - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
